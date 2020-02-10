@@ -47,12 +47,8 @@ try:
     def get_address():
         geo_coordinates = browser.find_element_by_class_name('mw-kartographer-maplink')
         full_address = browser.find_element_by_xpath("//span[@data-wikidata-property-id]")
-
         print(geo_coordinates.text)
         print(full_address.text)
-
-
-
     get_address()
 
 except Exception as e:
