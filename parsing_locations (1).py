@@ -34,7 +34,36 @@ try:
     for image in images:
         image_link = image.get_attribute('src')
         image_links.append(image_link)
+        
+    # достаем популярные слова
+    def get_popular_words():
+        all_text = browser.find_element_by_class_name('mw-parser-output')
 
+        txt = all_text.text
+        word_list = []
+
+        for word in txt.split():
+            clear_word = ''
+            for letter in word:
+                if letter.isalpha():
+                    clear_word += letter.lower()
+
+            word_list.append(clear_word)
+            popular_words = Counter(word_list).most_common(30)
+
+    get_popular_words()
+
+
+    # достаем адреса
+    def get_address():
+        geo_coordinates = browser.find_element_by_class_name('mw-kartographer-maplink')
+        full_address = browser.find_element_by_xpath("//span[@data-wikidata-property-id]")
+
+       # print(geo_coordinates.text)
+       # print(full_address.text)
+    get_address()       
+
+    
     # создание папки
     path_save_dir = path_main_dir + '/' + name
     os.mkdir(path_save_dir)
@@ -42,6 +71,8 @@ try:
     # сохранение описания
     with open(path_save_dir + '/description.txt', 'w', encoding='utf8') as f:
         f.write(text)
+        f.write(popular_words)
+        f.write(full_address)
 
     # сохранение фото
     urlretrieve(image_links[0], path_save_dir + '/img.jpg')
