@@ -68,8 +68,8 @@ try:
     # сохранение описания
     with open(path_save_dir + '/description.txt', 'w', encoding='utf8') as f:
         f.write(text)
-        f.write('   географические координаты {}   '.format(geo_coordinates.text))
-        f.write('  top 30 слов {}'.format(Counter(word_list).most_common(30)))
+        f.write('  1)Географические координаты {}   '.format(geo_coordinates.text))
+        f.write(' 2)Top 30 слов {}'.format(Counter(word_list).most_common(30)))
 
 
 
