@@ -1,5 +1,5 @@
 def find_geo_coordinates(browser):
-    return browser.find_element_by_class_name('mw-kartographer-maplink').text
+    return browser.find_element_by_class_name('mw-kartographer-maplink').text.strip()
 
 
 def find_full_address(browser):
@@ -8,9 +8,9 @@ def find_full_address(browser):
     for i in range(len(plain_list)):
         title = plain_list[i].text.lower()
         if title == "адрес" or title == 'город' or title == 'район':
-            text += plain_list[i + 1].text
+            text += plain_list[i + 1].text + " "
     if text != "":
-        return text
+        return text.strip()
     return "Адрес не найден"
 
 
@@ -51,4 +51,4 @@ def find_description(browser):
         description += '\n' + paragraphs[1].text
     if paragraphs[2] is not None and paragraphs[2].text.strip() != "" and paragraphs[0].text.strip() != "\n":
         description += '\n' + paragraphs[2].text
-    return description
+    return description.strip()
