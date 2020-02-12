@@ -20,6 +20,7 @@ def save_full_address(text, path_save_dir):
         f.write(text)
 
 
-def save_word_list(text, path_save_dir):
+def save_word_list(words, path_save_dir):
     with open(path_save_dir + '/word_list.txt', 'w', encoding='utf8') as f:
-        f.write(text)
+        for word in words:
+            f.write(str(word))
