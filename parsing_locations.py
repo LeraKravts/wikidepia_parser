@@ -34,9 +34,7 @@ try:
         image_link = image.get_attribute('src')
         image_links.append(image_link)
 
-
     # достаем популярные слова
-
     all_text = browser.find_element_by_class_name('mw-parser-output')
 
     txt = all_text.text
@@ -51,15 +49,11 @@ try:
         word_list.append(clear_word)
     print(Counter(word_list).most_common(30))
 
-
     # достаем адреса
-
     geo_coordinates = browser.find_element_by_class_name('mw-kartographer-maplink')
     full_address = browser.find_element_by_xpath("//span[@data-wikidata-property-id]")
     print(geo_coordinates.text)
     print(full_address.text)
-
-
 
     # создание папки
     path_save_dir = path_main_dir + '/' + name
@@ -70,8 +64,6 @@ try:
         f.write(text)
         f.write('  1)Географические координаты {}   '.format(geo_coordinates.text))
         f.write(' 2)Top 30 слов {}'.format(Counter(word_list).most_common(30)))
-
-
 
     # сохранение фото
     urlretrieve(image_links[0], path_save_dir + '/img.jpg')
